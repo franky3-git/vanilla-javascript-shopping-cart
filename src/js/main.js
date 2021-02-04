@@ -1,5 +1,7 @@
 import products from './items.js';
 
+const log = console.log;
+
 //Make the functionnality for showing the cart
 (function() {
 	const overlay = document.querySelector('.overlay');
@@ -22,16 +24,32 @@ import products from './items.js';
 	});
 })();
 
+const cart = [];
 
-//Load products in the UI
+//Load products in the UI, eventHandler to add product to cart
 (function() {
 	const containerProduct = document.querySelector('.products-container');
 
 	
 	containerProduct.innerHTML = loadProducts();
 	
+	containerProduct.addEventListener('click', (e) => {
+		if(e.target.matches('.btn-add-to-cart')) {
+			const product = e.target.parentElement;
+			const img = product.querySelector('img').getAttribute('src');
+			const name = product.querySelector('.name-product').textContent;
+			const price = parseFloat(product.querySelector('.price-product').textContent);
+			
+			const productAdded = {img, name, price}
+			//log(productAdded);
+			cart.push(productAdded);
+			log(cart);
+		}
+	})
+	
 })();
 
+//load product in the UI function
 function loadProducts() {
 	return products.map(product => {
 		return `
