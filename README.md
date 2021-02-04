@@ -43,6 +43,12 @@
 4. call the saveCart function in the renderCart function
 5. call the renderCart function in the beginning of the code
 
+### clear cart
+1. set event handler for clear cart button
+2. set the cart length equel to zero
+3. call the renderCart function and saveCart function in the event handler
+
+
 
 
 

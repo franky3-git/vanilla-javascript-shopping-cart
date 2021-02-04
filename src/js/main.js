@@ -34,7 +34,7 @@ renderCart();
 //Load products in the UI, eventHandler to add product to cart
 (function() {
 	const containerProduct = document.querySelector('.products-container');
-
+	const btnClearCart = document.querySelector('.btn-clear-cart');
 	
 	containerProduct.innerHTML = loadProducts();
 	
@@ -51,7 +51,13 @@ renderCart();
 			renderCart();
 			saveCart();
 		}
-	})
+	});
+	
+	btnClearCart.addEventListener('click', () => {
+		cart.length = 0;
+		renderCart();
+		saveCart()
+	});
 		
 })();
 
