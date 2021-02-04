@@ -40,11 +40,11 @@ const cart = [];
 			const name = product.querySelector('.name-product').textContent;
 			const price = parseFloat(product.querySelector('.price-product').textContent);
 			
-			const productAdded = {img, name, price}
-			//log(productAdded);
+			const productAdded = {img, name, price};
 			cart.push(productAdded);
 			log(cart);
 			renderCart();
+			updateTotal();
 		}
 	})
 		
@@ -70,6 +70,7 @@ function loadProducts() {
 	}).join('');
 }
 
+//render cart
 function renderCart() {
 	const cartContainer = document.querySelector('.product-cart-container');
 	cartContainer.innerHTML =  cart.map(product => {
@@ -89,8 +90,15 @@ function renderCart() {
 	})
 }
 
-
-
+//update total
+function updateTotal() {
+	const totalCart = document.querySelector('.total');
+	const total = cart.reduce((accumulator, product) => {
+		return accumulator + product.price;
+	}, 0)
+	
+	totalCart.textContent = total;
+}
 
 
 

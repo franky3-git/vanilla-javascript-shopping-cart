@@ -29,6 +29,13 @@
 2. loop through each item of the cart and display it in the product-cart-container
 3. call renderCart function each time you add item in the cart array 
 
+### update the total in the cart 
+1. create updateTotal function
+2. use the reduce function to sum of the product cart array price 
+3. set the total to the total in the UI
+4. call the updateTotal function each time you add item in the cart array 
+
+
 
 
 
