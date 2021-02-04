@@ -1,30 +1,35 @@
 import products from './items.js';
+const KEY_LOCAL_CART = 'cart';
+
+//Take the localstorage cart or set an empty array for the cart
+const cart = JSON.parse(localStorage.getItem(KEY_LOCAL_CART)) || [];
 
 const log = console.log;
+
+renderCart();
 
 //Make the functionnality for showing the cart
 (function() {
 	const overlay = document.querySelector('.overlay');
-	const cart = document.querySelector('.cart');
+	const cartUI = document.querySelector('.cart');
 	const btnOpenCart = document.querySelector('.btn-cart');
 	const btnCloseCart = document.querySelector('.btn-close');
 	
 	btnOpenCart.addEventListener('click', () => {
-		if(!cart.classList.contains('open')) {
-			cart.classList.add('open');
+		if(!cartUI.classList.contains('open')) {
+			cartUI.classList.add('open');
 			overlay.style.display = 'block';
 		} 
 	});
 	
 	btnCloseCart.addEventListener('click', () => {
-		if(cart.classList.contains('open')) {
-			cart.classList.remove('open');
+		if(cartUI.classList.contains('open')) {
+			cartUI.classList.remove('open');
 			overlay.style.display = 'none';
 		}
 	});
 })();
 
-const cart = [];
 
 //Load products in the UI, eventHandler to add product to cart
 (function() {
@@ -42,9 +47,9 @@ const cart = [];
 			
 			const productAdded = {img, name, price};
 			cart.push(productAdded);
-			log(cart);
+
 			renderCart();
-			updateTotal();
+			saveCart();
 		}
 	})
 		
@@ -87,7 +92,8 @@ function renderCart() {
 				<input type="number" min="1" class="qty" value="1">
 			</div>
 		`
-	})
+	});
+	updateTotal();
 }
 
 //update total
@@ -98,6 +104,11 @@ function updateTotal() {
 	}, 0)
 	
 	totalCart.textContent = total;
+}
+
+//save cart
+function saveCart() {
+	localStorage.setItem(KEY_LOCAL_CART, JSON.stringify(cart));
 }
 
 
