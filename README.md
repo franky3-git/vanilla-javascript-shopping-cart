@@ -24,6 +24,12 @@
 3. create a cart empty array in the global scope
 4. for every click add new Object in the cart array with the img, name, and price of the item
 
+### add select product to the cart UI
+1. create the renderCart function
+2. loop through each item of the cart and display it in the product-cart-container
+3. call renderCart function each time you add item in the cart array 
+
+
 
 
 

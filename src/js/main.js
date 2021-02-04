@@ -44,9 +44,10 @@ const cart = [];
 			//log(productAdded);
 			cart.push(productAdded);
 			log(cart);
+			renderCart();
 		}
 	})
-	
+		
 })();
 
 //load product in the UI function
@@ -69,7 +70,24 @@ function loadProducts() {
 	}).join('');
 }
 
-
+function renderCart() {
+	const cartContainer = document.querySelector('.product-cart-container');
+	cartContainer.innerHTML =  cart.map(product => {
+		return `
+			<div class="product-cart">
+				<div class="product-cart-img">
+					<img src="${product.img}" alt="${product.name}">
+				</div>
+				<div class="product-cart-middle">
+					<p class="product-cart-name">${product.name}</p>
+					<p class="product-cart-price">${product.price}</p>
+					<p class="btn-remove-from-cart">remove</p>
+				</div>
+				<input type="number" min="1" class="qty" value="1">
+			</div>
+		`
+	})
+}
 
 
 
